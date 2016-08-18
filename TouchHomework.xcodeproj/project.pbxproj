@@ -15,6 +15,8 @@
 		78F2E1E81D62E1E100217DEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F2E1E61D62E1E100217DEF /* LaunchScreen.storyboard */; };
 		78F2E1F31D62E1E100217DEF /* TouchHomeworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F2E1F21D62E1E100217DEF /* TouchHomeworkTests.m */; };
 		78F2E1FE1D62E1E100217DEF /* TouchHomeworkUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F2E1FD1D62E1E100217DEF /* TouchHomeworkUITests.m */; };
+		78F2E2131D6303D600217DEF /* blackSq.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F2E2111D6303D600217DEF /* blackSq.png */; };
+		78F2E2141D6303D600217DEF /* whiteSq.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F2E2121D6303D600217DEF /* whiteSq.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		78F2E1F91D62E1E100217DEF /* TouchHomeworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchHomeworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F2E1FD1D62E1E100217DEF /* TouchHomeworkUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchHomeworkUITests.m; sourceTree = "<group>"; };
 		78F2E1FF1D62E1E100217DEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78F2E2111D6303D600217DEF /* blackSq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSq.png; sourceTree = "<group>"; };
+		78F2E2121D6303D600217DEF /* whiteSq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteSq.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 		78F2E1D81D62E1E100217DEF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				78F2E2101D6303D600217DEF /* boardView */,
 				78F2E1D91D62E1E100217DEF /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +143,15 @@
 				78F2E1FF1D62E1E100217DEF /* Info.plist */,
 			);
 			path = TouchHomeworkUITests;
+			sourceTree = "<group>";
+		};
+		78F2E2101D6303D600217DEF /* boardView */ = {
+			isa = PBXGroup;
+			children = (
+				78F2E2111D6303D600217DEF /* blackSq.png */,
+				78F2E2121D6303D600217DEF /* whiteSq.png */,
+			);
+			path = boardView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +260,8 @@
 				78F2E1E81D62E1E100217DEF /* LaunchScreen.storyboard in Resources */,
 				78F2E1E51D62E1E100217DEF /* Assets.xcassets in Resources */,
 				78F2E1E31D62E1E100217DEF /* Main.storyboard in Resources */,
+				78F2E2141D6303D600217DEF /* whiteSq.png in Resources */,
+				78F2E2131D6303D600217DEF /* blackSq.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +512,7 @@
 				78F2E2041D62E1E100217DEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78F2E2051D62E1E100217DEF /* Build configuration list for PBXNativeTarget "TouchHomeworkTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +521,7 @@
 				78F2E2071D62E1E100217DEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78F2E2081D62E1E100217DEF /* Build configuration list for PBXNativeTarget "TouchHomeworkUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +530,7 @@
 				78F2E20A1D62E1E100217DEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
