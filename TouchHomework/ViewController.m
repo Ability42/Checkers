@@ -43,10 +43,11 @@ typedef enum {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    [self updateTags];
+    
     [self createBoardOnMainView];
     [self createCellsOnBoardView];
     [self createCheckersOnCellView];
-    [self updateTags];
 }
 
 - (void) createBoardOnMainView {
@@ -175,6 +176,34 @@ typedef enum {
     }
 }
 
+- (void) updateTags {
+    // THIS FUNCTION!!!
+}
+
+
+- (CGPoint) putInNearestFreePlace:(UIView *) view {
+    double minDistance = 1000;
+    
+    for (UIView *cell in self.cells) {
+        double tmpDistance = [self calculateDistanceBetweenPoint:view.center andPoint:cell.center];
+        if ((tmpDistance < minDistance) && (cell.tag == allowedAreaTag)) {
+            minDistance = tmpDistance;
+            self.nearestPoint = cell.center;
+        }
+    }
+    
+    return self.nearestPoint;
+}
+
+
+- (double) calculateDistanceBetweenPoint:(CGPoint)point1 andPoint:(CGPoint)point2 {
+    double dx = point1.x - point2.x;
+    double dy = point1.y - point2.y;
+    return sqrt(dx*dx + dy*dy);
+}
+
+
+
 # pragma mark - CreateViewFromRectWithProperties
 
 - (UIView*) createViewWithRect:(CGRect)rect withColor:(UIColor*)color withParentView:(UIView*)parentView andMask:(UIViewAutoresizing)mask
@@ -192,7 +221,6 @@ typedef enum {
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    
     UITouch *touch = [touches anyObject];
     CGPoint pointOnMainView = [touch locationInView:self.boardView];
     
@@ -215,11 +243,11 @@ typedef enum {
         
         
         self.prevPoint = CGPointMake(pointOnMainView.x + self.touchOffset.x, pointOnMainView.y + self.touchOffset.y);
+        
     } else {
         
         self.draggingView = nil;
     }
-    [self updateTags];
 
 }
 
@@ -234,7 +262,10 @@ typedef enum {
         NSLog(@"%@", NSStringFromCGPoint(pointOnMainView));
         
         self.draggingView.center = correction;
+        
     }
+    
+    
     
 }
 
@@ -249,7 +280,6 @@ typedef enum {
 
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
     [self onTouchEnded];
     
     CGPoint endTouchPoint = self.draggingView.center;
@@ -272,7 +302,6 @@ typedef enum {
     }
     
     self.draggingView.transform = CGAffineTransformIdentity;
-    [self updateTags];
     
 }
 
@@ -283,39 +312,6 @@ typedef enum {
                          self.draggingView.transform = CGAffineTransformIdentity;
                          self.draggingView.alpha = 1;
                      }];
-}
-
-- (CGPoint) putInNearestFreePlace:(UIView *) view {
-    double minDistance = 1000;
-
-    for (UIView *cell in self.cells) {
-        double tmpDistance = [self calculateDistanceBetweenPoint:view.center andPoint:cell.center];
-        if ((tmpDistance < minDistance) && (cell.tag == allowedAreaTag)) {
-            minDistance = tmpDistance;
-            self.nearestPoint = cell.center;
-        }
-    }
-    
-    return self.nearestPoint;
-}
-
-- (void) updateTags {
-    NSArray *allCheckers = [self.firstKindOfCheckers arrayByAddingObjectsFromArray:self.secondKindOfCheckers];
-    for (UIView *cell in self.cells) {
-        for (UIView *ch in allCheckers) {
-            if (CGRectContainsRect(cell.frame, ch.frame)) {
-                cell.tag = restrictedAreaTag;
-            } else {
-                cell.tag = allowedAreaTag;
-            }
-        }
-    }
-}
-
-- (double) calculateDistanceBetweenPoint:(CGPoint)point1 andPoint:(CGPoint)point2 {
-    double dx = point1.x - point2.x;
-    double dy = point1.y - point2.y;
-    return sqrt(dx*dx + dy*dy);
 }
 
 #pragma mark - Memory
